@@ -1,0 +1,16 @@
+﻿Build started 29/01/2013 01:40:02.
+     1>Project "G:\Downloads\SDK\src\vJoyClient.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\inc /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt vJoyClient.cpp
+         vJoyClient.cpp
+     1>g:\downloads\sdk\src\vjoyclient.cpp(28): warning C4101: 'iReport' : unreferenced local variable
+     1>g:\downloads\sdk\src\vjoyclient.cpp(223): warning C4700: uninitialized local variable 'poop' used
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\Downloads\SDK\src\Debug\vJoyClient.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\lib Setupapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\Downloads\SDK\src\Debug\vJoyClient.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\Downloads\SDK\src\Debug\vJoyClient.lib" /MACHINE:X86 /SAFESEH Debug\Serial.obj
+         Debug\vJoyClient.obj
+         vJoyClient.vcxproj -> G:\Downloads\SDK\src\Debug\vJoyClient.exe
+     1>Done Building Project "G:\Downloads\SDK\src\vJoyClient.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.20
