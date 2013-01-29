@@ -148,26 +148,36 @@ _tmain(__in int argc, __in PZPWSTR argv)
 		while(serial.ReadDataWaiting() >= 18){
 			serial.ReadData(lpBuffer, 18);
 		}
-		/*
-high_byte -> (Channelvalue + 1000) / 256 
-low_byte -> (Channelvalue + 1000) mod 256 
-checksum -> sum of bytes 2 to 15*/
 
 		channel1=lpBuffer[2]*256;
-		if (lpBuffer[3]>=0){lpBuffer+=lpBuffer[3]-128;}
-		else {lpBuffer += lpBuffer[3]+128;}
-		
-		//+lpBuffer[3];
-		/*if (lpBuffer[3]>=0){poop = (lpBuffer[3]-128);}
-		else {poop = lpBuffer[3]+128;}*/
-		//poop=lpBuffer[3];
-		channel2=lpBuffer[4]*256;//+lpBuffer[5];
-		channel3=lpBuffer[6]*256;//+lpBuffer[7];
-		channel4=lpBuffer[8]*256+lpBuffer[9];
-		channel5=lpBuffer[10]*256+lpBuffer[11];
-		channel6=lpBuffer[12]*256+lpBuffer[13];
-//		cout << (int)lpBuffer[2];
+		if (lpBuffer[3]>=0){channel1+=lpBuffer[3]-128;}
+		else {channel1 += lpBuffer[3]+128;}
 
+		channel2=lpBuffer[4]*256;
+		if (lpBuffer[5]>=0){channel2+=lpBuffer[5]-128;}
+		else {channel2 += lpBuffer[5]+128;}
+
+		channel3=lpBuffer[6]*256;
+		if (lpBuffer[7]>=0){channel3+=lpBuffer[7]-128;}
+		else {channel3 += lpBuffer[7]+128;}
+
+		channel4=lpBuffer[8]*256;
+		if (lpBuffer[9]>=0){channel4+=lpBuffer[9]-128;}
+		else {channel4 += lpBuffer[9]+128;}
+
+		channel5=lpBuffer[10]*256;
+		if (lpBuffer[11]>=0){channel5+=lpBuffer[11]-128;}
+		else {channel5 += lpBuffer[11]+128;}
+
+		channel6=lpBuffer[12]*256;
+		if (lpBuffer[13]>=0){channel6+=lpBuffer[13]-128;}
+		else {channel6 += lpBuffer[13]+128;}
+
+		X=32.767*(channel1-1000);
+		Y=32.767*(channel2-1000);
+		//Z=32.767*(channel3-1000);
+		Z=0;
+		//cout << Y << endl;
 		// Set position of 4 axes
 		res = SetAxis(X, iInterface, HID_USAGE_X);
 		res = SetAxis(Y, iInterface, HID_USAGE_Y);
@@ -220,17 +230,17 @@ checksum -> sum of bytes 2 to 15*/
 		};
 
 		Sleep(20);
-		cout<<channel1<< "  " << poop << "   " << (poop + channel1) <<endl;
-		if (channel1 >=1500){res = SetBtn(TRUE, iInterface, 1);}//Sleep(50);res = SetBtn(FALSE, iInterface, 1);}
+		//cout<<channel1<< " " << channel2 << " " << channel3 << endl;// "  " << poop << "   " << (poop + channel1) <<endl;
+		if (channel3 >=1600){res = SetBtn(TRUE, iInterface, 1);}//Sleep(50);res = SetBtn(FALSE, iInterface, 1);}
 		else{res = SetBtn(FALSE, iInterface, 1);}
-		if (channel1 <=1200){res = SetBtn(TRUE, iInterface, 2);}//Sleep(50);res = SetBtn(FALSE, iInterface, 2);}
+		if (channel3 <=1400){res = SetBtn(TRUE, iInterface, 2);}//Sleep(50);res = SetBtn(FALSE, iInterface, 2);}
 		else{res = SetBtn(FALSE, iInterface, 2);}
-		if (channel2 >=1300){res = SetBtn(TRUE, iInterface, 3);}//Sleep(50);res = SetBtn(FALSE, iInterface, 3);cout<<"poop."<<endl;}
+		if (channel4 >=1600){res = SetBtn(TRUE, iInterface, 3);}//Sleep(50);res = SetBtn(FALSE, iInterface, 3);cout<<"poop."<<endl;}
 		else{res = SetBtn(FALSE, iInterface, 3);}
-		if (channel2 <=1100){res = SetBtn(TRUE, iInterface, 4);}//Sleep(50);res = SetBtn(FALSE, iInterface, 4);}
+		if (channel4 <=1400){res = SetBtn(TRUE, iInterface, 4);}//Sleep(50);res = SetBtn(FALSE, iInterface, 4);}
 		else{res = SetBtn(FALSE, iInterface, 4);}
-		if (channel3 >=1500){res = SetBtn(TRUE, iInterface, 5);}//Sleep(50);res = SetBtn(FALSE, iInterface, 4);}
-		else{res = SetBtn(FALSE, iInterface, 5);}
+		//if (channel3 >=1500){res = SetBtn(TRUE, iInterface, 5);}//Sleep(50);res = SetBtn(FALSE, iInterface, 4);}
+		//else{res = SetBtn(FALSE, iInterface, 5);}
 		//X=channel1;
 		//X+=150;
 		//Y+=250;
